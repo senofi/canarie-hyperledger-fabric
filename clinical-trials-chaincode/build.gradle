@@ -1,0 +1,43 @@
+/*
+ * Copyright Senofi Inc. 2021
+ * Not for production use
+ */
+plugins {
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
+    id 'java'
+}
+
+group 'ca.senofi.trials.chaincode'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+
+    mavenCentral()
+    maven {
+        url 'https://jitpack.io'
+    }
+}
+
+dependencies {
+    implementation group: 'org.hyperledger.fabric-chaincode-java', name: 'fabric-chaincode-protos', version: '2.+'
+    implementation group: 'org.hyperledger.fabric-chaincode-java', name: 'fabric-chaincode-shim', version: '2.+'
+    implementation group: 'com.google.protobuf', name: 'protobuf-java', version: '3.12.+'
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    implementation 'org.glassfish:javax.json:1.1.0-M1'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.9.0'
+    implementation group: 'commons-logging', name: 'commons-logging', version: '1.2'
+}
+
+shadowJar {
+    baseName = 'chaincode'
+    version = null
+    classifier = null
+
+    manifest {
+        attributes 'Main-Class': 'ca.senofi.trials.contract.TrialChaincode'
+    }
+}
+
+
