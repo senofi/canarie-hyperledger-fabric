@@ -37,7 +37,7 @@ createChannel() {
 	while [ $rc -ne 0 -a $COUNTER -lt $MAX_RETRY ] ; do
 		sleep $DELAY
 		set -x
-		osnadmin channel join --channel-id $CHANNEL_NAME --config-block ./channel-artifacts/${CHANNEL_NAME}.block -o localhost:7053 --ca-file "$ORDERER_CA" --client-cert "$ORDERER_ADMIN_TLS_SIGN_CERT" --client-key "$ORDERER_ADMIN_TLS_PRIVATE_KEY" >&log.txt
+		osnadmin channel join --channelID $CHANNEL_NAME --config-block ./channel-artifacts/${CHANNEL_NAME}.block -o localhost:7053 --ca-file "$ORDERER_CA" --client-cert "$ORDERER_ADMIN_TLS_SIGN_CERT" --client-key "$ORDERER_ADMIN_TLS_PRIVATE_KEY" >&log.txt
 		res=$?
 		{ set +x; } 2>/dev/null
 		let rc=$res
@@ -93,7 +93,7 @@ joinChannel 1
 infoln "Joining genh peer to the channel..."
 joinChannel 2
 infoln "Joining regulator peer to the channel..."
-joinChannel 3
+joinChannel 4
 
 ## Set the anchor peers for each org in the channel
 infoln "Setting anchor peer for nova..."
@@ -101,6 +101,6 @@ setAnchorPeer 1
 infoln "Setting anchor peer for genh..."
 setAnchorPeer 2
 infoln "Setting anchor peer for regulator..."
-setAnchorPeer 3
+setAnchorPeer 4
 
 successln "Channel '$CHANNEL_NAME' joined"

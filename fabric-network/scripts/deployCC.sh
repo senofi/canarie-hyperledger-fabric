@@ -291,7 +291,7 @@ installChaincode 1
 infoln "Install chaincode on peer0.genh..."
 installChaincode 2
 infoln "Install chaincode on peer0.regulator..."
-installChaincode 3
+installChaincode 4
 
 ## query whether the chaincode is installed
 queryInstalled 1
@@ -303,7 +303,7 @@ approveForMyOrg 1
 ## expect nova to have approved and genh not to
 checkCommitReadiness 1 "\"nova\": true" "\"genh\": false" "\"regulator\": false"
 checkCommitReadiness 2 "\"nova\": true" "\"genh\": false" "\"regulator\": false"
-checkCommitReadiness 3 "\"nova\": true" "\"genh\": false" "\"regulator\": false"
+checkCommitReadiness 4 "\"nova\": true" "\"genh\": false" "\"regulator\": false"
 
 ## now approve also for genh
 approveForMyOrg 2
@@ -312,29 +312,29 @@ approveForMyOrg 2
 ## expect them both to have approved
 checkCommitReadiness 1 "\"nova\": true" "\"genh\": true" "\"regulator\": false"
 checkCommitReadiness 2 "\"nova\": true" "\"genh\": true" "\"regulator\": false"
-checkCommitReadiness 3 "\"nova\": true" "\"genh\": true" "\"regulator\": false"
+checkCommitReadiness 4 "\"nova\": true" "\"genh\": true" "\"regulator\": false"
 
 ## now approve also for genh
-approveForMyOrg 3
+approveForMyOrg 4
 
 checkCommitReadiness 1 "\"nova\": true" "\"genh\": true" "\"regulator\": true"
 checkCommitReadiness 2 "\"nova\": true" "\"genh\": true" "\"regulator\": true"
-checkCommitReadiness 3 "\"nova\": true" "\"genh\": true" "\"regulator\": true"
+checkCommitReadiness 4 "\"nova\": true" "\"genh\": true" "\"regulator\": true"
 
 ## now that we know for sure both orgs have approved, commit the definition
-commitChaincodeDefinition 1 2 3
+commitChaincodeDefinition 1 2 4
 
 ## query on both orgs to see that the definition committed successfully
 queryCommitted 1
 queryCommitted 2
-queryCommitted 3
+queryCommitted 4
 
 ## Invoke the chaincode - this does require that the chaincode have the 'initLedger'
 ## method defined
 if [ "$CC_INIT_FCN" = "NA" ]; then
   infoln "Chaincode initialization is not required"
 else
-  chaincodeInvokeInit 1 2 3
+  chaincodeInvokeInit 1 2 4
 fi
 
 exit 0
