@@ -41,7 +41,7 @@
 		"NovaMSP": {
 			"mspid": "nova",
 			"adminPrivateKey": {
-				"path": "/tmp/crypto/peerOrganizations/nova.example.com/users/User1@nova.example.com/msp/keystore/bd4a14a03aeabeda50dcef7ba6ba6e263771193cbba434ec122805a2f4b7a3d7_sk"
+				"path": "/tmp/crypto/peerOrganizations/nova.example.com/users/User1@nova.example.com/msp/keystore/25a88ba8e3328ebeec2b777c3146d0f6818189c9383f72260f64a01b21070017_sk"
 			},
 			"peers": ["peer0.nova.example.com"],
 			"signedCert": {
@@ -51,7 +51,7 @@
 		"RegulatorMSP": {
 			"mspid": "regulator",
 			"adminPrivateKey": {
-				"path": "/tmp/crypto/peerOrganizations/regulator.example.com/users/User1@regulator.example.com/msp/keystore/bd4a14a03aeabeda50dcef7ba6ba6e263771193cbba434ec122805a2f4b7a3d7_sk"
+				"path": "/tmp/crypto/peerOrganizations/regulator.example.com/users/User1@regulator.example.com/msp/keystore/24babeca8a839eac180455335defd7dc8711fc5a4c3b3f4eff1899786cc86223_sk"
 			},
 			"peers": ["peer0.regulator.example.com"],
 			"signedCert": {
@@ -60,11 +60,23 @@
 		}
 	},
 	"peers": {
-		"peer0.org1.example.com": {
+		"peer0.genh.example.com": {
 			"tlsCACerts": {
-				"path": "/tmp/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt"
+				"path": "/tmp/crypto/peerOrganizations/genh.example.com/peers/peer0.genh.example.com/tls/ca.crt"
 			},
-			"url": "grpcs://peer0.org1.example.com:7051"
+			"url": "grpcs://peer0.genh.example.com:9052"
+		},
+		"peer0.nova.example.com": {
+			"tlsCACerts": {
+				"path": "/tmp/crypto/peerOrganizations/nova.example.com/peers/peer0.nova.example.com/tls/ca.crt"
+			},
+			"url": "grpcs://peer0.nova.example.com:7052"
+		},
+		"peer0.regulator.example.com": {
+			"tlsCACerts": {
+				"path": "/tmp/crypto/peerOrganizations/regulator.example.com/peers/peer0.regulator.example.com/tls/ca.crt"
+			},
+			"url": "grpcs://peer0.regulator.example.com:8051"
 		}
 	}
 }
