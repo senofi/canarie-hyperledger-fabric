@@ -1,0 +1,69 @@
+dependencies {
+    runtimeOnly "org.springframework.boot:spring-boot-devtools"
+}
+
+def profiles = "prod"
+if (project.hasProperty("no-liquibase")) {
+    profiles += ",no-liquibase"
+}
+if (project.hasProperty("tls")) {
+    profiles += ",tls"
+}
+
+springBoot {
+    buildInfo {
+		properties {
+			time = null
+		}
+	}
+}
+
+bootRun {
+    args = ["-Pprod"]
+}
+
+
+processResources {
+    filesMatching("**/application.yml") {
+        filter {
+            it.replace("#project.version#", version)
+        }
+    }
+    filesMatching("**/bootstrap.yml") {
+        filter {
+            it.replace("#spring.profiles.active#", profiles)
+        }
+    }
+}
+
+task webpackBuildDev(type: NpmTask) {
+    inputs.files("src/main/webapp/package-lock.json")
+    inputs.dir("src/main/webapp/")
+
+    inputs.files("src/main/webapp/package.json")
+
+    outputs.dir("src/main/webapp")
+
+    workingDir = file("${project.projectDir}/src/main/webapp")
+
+    dependsOn npmInstall
+    args = ["run", "build"]
+}
+
+task deleteStatic(type: Delete) {
+    delete "build/resources/main/static"
+}
+
+task copyWebappDist(type: Copy) {
+    from 'src/main/webapp/dist/spa'
+    into { file("build/resources/main/static/") }
+
+    dependsOn deleteStatic
+    dependsOn webpackBuildDev
+    
+    tasks.findByName('webpackBuildDev').mustRunAfter 'deleteStatic'
+}
+
+processResources.dependsOn copyWebappDist
+bootJar.dependsOn processResources
+
