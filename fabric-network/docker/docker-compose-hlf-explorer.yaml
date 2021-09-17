@@ -6,8 +6,6 @@ volumes:
 
 networks:
   mynetwork.com:
-    external:
-      name: test
 
 services:
 
