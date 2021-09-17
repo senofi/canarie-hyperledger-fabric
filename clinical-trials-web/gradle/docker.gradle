@@ -1,0 +1,20 @@
+jib {
+    from {
+        image = "adoptopenjdk/openjdk11:alpine-jre"
+    }
+    to {
+        image = "trial-web:latest"
+    }
+    container {
+        entrypoint = ["sh", "-c", "chmod +x /entrypoint.sh && sync && /entrypoint.sh"]
+        ports = ["8088", "5701/udp" ]
+        environment = [
+            SPRING_OUTPUT_ANSI_ENABLED: "ALWAYS",
+            JHIPSTER_SLEEP: "0",
+            SPRING_PROFILES_ACTIVE: "prod",
+            JHIPSTER_SLEEP: "0"
+        ]
+        useCurrentTimestamp = true
+    }
+}
+
