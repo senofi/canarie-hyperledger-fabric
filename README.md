@@ -3,7 +3,7 @@ Sample Solution of a Hyperledger Fabric Network, chaincode and web applications.
 
 CANARIE DAIR Sample Solution
 Preliminary steps to run on a Linux machine:
-- Run install-bins.sh
+- Run ./scripts/install-bins.sh
 - Go to folder "fabric-network"
 - Run the following commands:
   - ./network.sh down

@@ -80,14 +80,13 @@ Vagrant.configure("2") do |config|
     # documentation for more information about their specific syntax and use.
   
     # Replace RELEASENAME with the branch or tag you want to install from the KAT repository
-    config.vm.provision "shell", inline: <<-SH
-      RELEASENAME="main"
+    config.vm.provision "shell", inline: <<-SHELL
+      RELEASENAME="develop"
       date
-      echo "Installing version '$RELEASENAME' into VM, install logs available at /var/log/"
-      echo "Step 1: Installing Hyperledger Fabric Components"
+      echo "Installing version '$RELEASENAME' into a VM, install logs available at /var/log/"
+      echo "Step 1: Installing Canarie Hyperledger Fabric Sample Solution"
       pwd
-      /vagrant/fabric-network/scripts/prerequisites.sh | bash | tee /var/log/prerequisites-install.log && \
-          /vagrant/fabric-network/network.sh | bash | tee /var/log/hlf-network-install.log
-      echo "Hyperledger Fabric Network Install Complete"
-    SH
+      curl -s -L https://raw.githubusercontent.com/senofi/canarie-hyperledger-fabric/$RELEASENAME/scripts/startup.sh | bash | tee /var/log/startup.log && \
+        echo "Hyperledger Fabric Network Install Complete"
+    SHELL
   end
