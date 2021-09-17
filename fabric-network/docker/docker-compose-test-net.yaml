@@ -113,12 +113,12 @@ services:
       - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/fabric/tls/ca.crt
       # Peer specific variabes
       - CORE_PEER_ID=peer0.regulator.example.com
-      - CORE_PEER_ADDRESS=peer0.noregulatora.example.com:7051
-      - CORE_PEER_LISTENADDRESS=0.0.0.0:7051
-      - CORE_PEER_CHAINCODEADDRESS=peer0.regulator.example.com:7052
-      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.regulator.example.com:7051
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.regulator.example.com:7051
+      - CORE_PEER_ADDRESS=peer0.regulator.example.com:8051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:8051
+      - CORE_PEER_CHAINCODEADDRESS=peer0.regulator.example.com:8052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:8052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.regulator.example.com:8051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.regulator.example.com:8051
       - CORE_PEER_LOCALMSPID=regulator
     volumes:
         - /var/run/docker.sock:/host/var/run/docker.sock
@@ -128,7 +128,7 @@ services:
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: peer node start
     ports:
-      - 8051:7051
+      - 8051:8051
     networks:
       - test
 

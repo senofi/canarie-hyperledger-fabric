@@ -78,6 +78,11 @@ function createNova() {
   { set +x; } 2>/dev/null
 
   cp "${PWD}/organizations/peerOrganizations/nova.example.com/msp/config.yaml" "${PWD}/organizations/peerOrganizations/nova.example.com/users/Admin@nova.example.com/msp/config.yaml"
+
+  cp "${PWD}/organizations/peerOrganizations/nova.example.com/users/Admin@nova.example.com/msp/keystore/"* "${PWD}/organizations/peerOrganizations/nova.example.com/users/Admin@nova.example.com/msp/keystore/key.key"
+
+  chmod 444 "${PWD}/organizations/peerOrganizations/nova.example.com/users/Admin@nova.example.com/msp/keystore/key.key"
+
 }
 
 
@@ -159,6 +164,11 @@ function createRegulator() {
   { set +x; } 2>/dev/null
 
   cp "${PWD}/organizations/peerOrganizations/regulator.example.com/msp/config.yaml" "${PWD}/organizations/peerOrganizations/regulator.example.com/users/Admin@regulator.example.com/msp/config.yaml"
+
+  cp "${PWD}/organizations/peerOrganizations/regulator.example.com/users/Admin@regulator.example.com/msp/keystore/"* "${PWD}/organizations/peerOrganizations/regulator.example.com/users/Admin@regulator.example.com/msp/keystore/key.key"
+
+  chmod 444 "${PWD}/organizations/peerOrganizations/regulator.example.com/users/Admin@regulator.example.com/msp/keystore/key.key"
+
 }
 
 function createGenh() {
@@ -239,6 +249,10 @@ function createGenh() {
   { set +x; } 2>/dev/null
 
   cp "${PWD}/organizations/peerOrganizations/genh.example.com/msp/config.yaml" "${PWD}/organizations/peerOrganizations/genh.example.com/users/Admin@genh.example.com/msp/config.yaml"
+
+  cp "${PWD}/organizations/peerOrganizations/genh.example.com/users/Admin@genh.example.com/msp/keystore/"* "${PWD}/organizations/peerOrganizations/genh.example.com/users/Admin@genh.example.com/msp/keystore/key.key"
+
+  chmod 444 "${PWD}/organizations/peerOrganizations/genh.example.com/users/Admin@genh.example.com/msp/keystore/key.key"
 }
 
 function createOrderer() {
