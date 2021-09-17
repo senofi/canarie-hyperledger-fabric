@@ -19,7 +19,7 @@
 		}
 	},
 	"channels": {
-		"mychannel": {
+		"trial": {
 			"peers": {
 				"peer0.genh.example.com": {},
                 "peer0.regulator.example.com": {},
