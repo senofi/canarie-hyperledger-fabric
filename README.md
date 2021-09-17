@@ -12,6 +12,12 @@ Preliminary steps to run on a Linux machine:
   - ./network.sh deployCC -ccn cctest -ccp ../clinical-trials-chaincode/ -ccl java -c trial
   - docker-compose -f docker/docker-compose-web-apps.yaml up -d
 
+Open 3 browser tabs and use the credentials: user/pass
+http://localhost:8088/ - create a case as a hospital representative
+http://localhost:8089/ - investigate a case as a pharma processor
+http://localhost:8090/ - see the status as regulator
+
+
 Assume we have a javascript chaincode in folder ../../fabric-samples/asset-transfer-basic/chaincode-javascript/
 
 # How to Get Started
