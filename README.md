@@ -10,6 +10,7 @@ Preliminary steps to run on a Linux machine:
   - ./network.sh up -ca
   - ./network.sh createChannel -c trial
   - ./network.sh deployCC -ccn basic -ccp ../../fabric-samples/asset-transfer-basic/chaincode-javascript/ -ccl javascript -c trial
+  - docker-compose -f docker/docker-compose-web-apps.yaml up -d
 
 Assume we have a javascript chaincode in folder ../../fabric-samples/asset-transfer-basic/chaincode-javascript/
 

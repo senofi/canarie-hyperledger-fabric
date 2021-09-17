@@ -1,8 +1,8 @@
 {
-    "name": "test-network-org${ORG}",
+    "name": "test-network-${ORG}",
     "version": "1.0.0",
     "client": {
-        "organization": "Org${ORG}",
+        "organization": "${ORG}",
         "connection": {
             "timeout": {
                 "peer": {
@@ -12,32 +12,38 @@
         }
     },
     "organizations": {
-        "Org${ORG}": {
-            "mspid": "Org${ORG}MSP",
+        "${ORG}": {
+            "mspid": "${ORG}",
             "peers": [
-                "peer0.org${ORG}.example.com"
+                "peer0.${ORG}.example.com"
             ],
+            "adminPrivateKeyPEM": {
+                "path": "/var/hyperledger/pki/${ORG}/admin/keystore/key.key"
+            },
+            "signedCertPEM": {
+                "path": "/var/hyperledger/pki/${ORG}/admin/signcerts/cert.pem"
+            },
             "certificateAuthorities": [
-                "ca.org${ORG}.example.com"
+                "ca.${ORG}.example.com"
             ]
         }
     },
     "peers": {
-        "peer0.org${ORG}.example.com": {
-            "url": "grpcs://localhost:${P0PORT}",
+        "peer0.${ORG}.example.com": {
+            "url": "grpcs://peer0.${ORG}.example.com:${P0PORT}",
             "tlsCACerts": {
                 "pem": "${PEERPEM}"
             },
             "grpcOptions": {
-                "ssl-target-name-override": "peer0.org${ORG}.example.com",
-                "hostnameOverride": "peer0.org${ORG}.example.com"
+                "ssl-target-name-override": "peer0.${ORG}.example.com",
+                "hostnameOverride": "peer0.${ORG}.example.com"
             }
         }
     },
     "certificateAuthorities": {
-        "ca.org${ORG}.example.com": {
-            "url": "https://localhost:${CAPORT}",
-            "caName": "ca-org${ORG}",
+        "ca.${ORG}.example.com": {
+            "url": "https://ca.${ORG}.example.com:${CAPORT}",
+            "caName": "ca-${ORG}",
             "tlsCACerts": {
                 "pem": ["${CAPEM}"]
             },

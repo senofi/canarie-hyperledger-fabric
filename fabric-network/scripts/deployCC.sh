@@ -63,12 +63,13 @@ if [ "$CC_SRC_LANGUAGE" = "go" ]; then
 elif [ "$CC_SRC_LANGUAGE" = "java" ]; then
   CC_RUNTIME_LANGUAGE=java
 
-  infoln "Compiling Java code..."
+  infoln "Compiling Java code..." 
+  infoln $CC_SRC_PATH
   pushd $CC_SRC_PATH
-  ./gradlew installDist
+  #./gradlew shadowJar
   popd
   successln "Finished compiling Java code"
-  CC_SRC_PATH=$CC_SRC_PATH/build/install/$CC_NAME
+  #C_SRC_PATH=$CC_SRC_PATH/build/install/$CC_NAME
 
 elif [ "$CC_SRC_LANGUAGE" = "javascript" ]; then
   CC_RUNTIME_LANGUAGE=node
