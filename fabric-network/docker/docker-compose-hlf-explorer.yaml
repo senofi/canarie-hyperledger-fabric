@@ -43,8 +43,10 @@ services:
       - DISCOVERY_AS_LOCALHOST=false
     volumes:
       - ./fabric-explorer/config.json:/opt/explorer/app/platform/fabric/config.json
-      - ./fabric-explorer/connection-profile:/opt/explorer/app/platform/fabric/connection-profile
-      - ../organizations:/tmp/crypto
+      - ../organizations/peerOrganizations/genh.example.com/tlsca/tlsca.genh.example.com-cert.pem:/var/hyperledger/pki/genh/tlsca/cert.pem
+      - ../organizations/peerOrganizations/genh.example.com/users/Admin@genh.example.com/msp/signcerts/cert.pem:/var/hyperledger/pki/genh/admin/signcerts/cert.pem
+      - ../organizations/peerOrganizations/genh.example.com/users/Admin@genh.example.com/msp/keystore/key.key:/var/hyperledger/pki/genh/admin/keystore/key.key
+      - ../organizations/peerOrganizations/genh.example.com/connection-genh-explorer.json:/var/hyperledger/network/genh/connection.json
       - walletstore:/opt/explorer/wallet
     ports:
       - 8080:8080

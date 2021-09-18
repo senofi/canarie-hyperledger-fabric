@@ -2,7 +2,7 @@
 	"network-configs": {
 		"trials-network": {
 			"name": "Clinical Trials Network",
-			"profile": "/tmp/crypto/peerOrganizations/genh.example.com/connection-genh.json "
+			"profile": "/var/hyperledger/network/genh/connection.json"
 		}
 	},
 	"license": "Apache-2.0"
