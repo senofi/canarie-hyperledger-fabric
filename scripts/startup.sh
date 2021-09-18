@@ -12,6 +12,8 @@ apt-get update && \
 
 HLF_FOLDER=/opt/canarie/hyperledger-fabric
 BRANCH=${1:-develop}
+rm -fr $HLF_FOLDER
+
 mkdir -p $HLF_FOLDER
 
 echo "Cloning Git repository with branch: '$BRANCH'"
@@ -24,4 +26,5 @@ git clone -b $BRANCH https://github.com/senofi/canarie-hyperledger-fabric.git $H
     ./network.sh createChannel -c trial && \
     ./network.sh deployCC -ccn cctest -ccp ../clinical-trials-chaincode/ -ccl java -c trial && \
     docker-compose -f docker/docker-compose-web-apps.yaml up -d && \
+    docker-compose -f docker/docker-compose-hlf-explorer.yaml up -d && \
     echo "Installation Process Complete"
