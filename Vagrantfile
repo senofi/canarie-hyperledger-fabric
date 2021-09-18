@@ -43,11 +43,14 @@ Vagrant.configure("2") do |config|
     # Create a forwarded port mapping which allows access to a specific port
     # within the machine from a port on the host machine and only allow access
     # via 127.0.0.1 to disable public access
-    # config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
+    config.vm.network "forwarded_port", guest: 8080, host: 8080, host_ip: "127.0.0.1"
+    config.vm.network "forwarded_port", guest: 8088, host: 8088, host_ip: "127.0.0.1"
+    config.vm.network "forwarded_port", guest: 8089, host: 8089, host_ip: "127.0.0.1"
+    config.vm.network "forwarded_port", guest: 8090, host: 8090, host_ip: "127.0.0.1"
   
     # Create a private network, which allows host-only access to the machine
     # using a specific IP.
-    config.vm.network "private_network", ip: "192.168.33.10"
+    config.vm.network "private_network", ip: "192.168.22.22"
   
     # Create a public network, which generally matched to bridged network.
     # Bridged networks make the machine appear as another physical device on
@@ -64,13 +67,13 @@ Vagrant.configure("2") do |config|
     # backing providers for Vagrant. These expose provider-specific options.
     # Example for VirtualBox:
     #
-    # config.vm.provider "virtualbox" do |vb|
-    #   # Display the VirtualBox GUI when booting the machine
-    #   vb.gui = true
-    #
-    #   # Customize the amount of memory on the VM:
-    #   vb.memory = "1024"
-    # end
+    config.vm.provider "virtualbox" do |vb|
+      # Display the VirtualBox GUI when booting the machine
+      # vb.gui = true
+    
+      # Customize the amount of memory on the VM:
+      vb.memory = "4096"
+    end
     #
     # View the documentation for the provider you are using for more
     # information on available options.
@@ -80,14 +83,13 @@ Vagrant.configure("2") do |config|
     # documentation for more information about their specific syntax and use.
   
     # Replace RELEASENAME with the branch or tag you want to install from the KAT repository
-    config.vm.provision "shell", inline: <<-SH
-      RELEASENAME="main"
+    config.vm.provision "shell", inline: <<-SHELL
+      RELEASENAME="develop"
       date
-      echo "Installing version '$RELEASENAME' into VM, install logs available at /var/log/"
-      echo "Step 1: Installing Hyperledger Fabric Components"
+      echo "Installing version '$RELEASENAME' into a VM, install logs available at /var/log/"
+      echo "Step 1: Installing Canarie Hyperledger Fabric Sample Solution"
       pwd
-      /vagrant/fabric-network/scripts/prerequisites.sh | bash | tee /var/log/prerequisites-install.log && \
-          /vagrant/fabric-network/network.sh | bash | tee /var/log/hlf-network-install.log
-      echo "Hyperledger Fabric Network Install Complete"
-    SH
+      wget -q https://raw.githubusercontent.com/senofi/canarie-hyperledger-fabric/$RELEASENAME/scripts/startup.sh && bash ./startup.sh $RELEASENAME | tee /var/log/canarie.log && \
+        echo "Hyperledger Fabric Network Install Complete"
+    SHELL
   end

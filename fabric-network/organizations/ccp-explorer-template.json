@@ -1,0 +1,62 @@
+{
+    "name": "test-network-${ORG}",
+    "version": "1.0.0",
+    "client": {
+        "organization": "${ORG}",
+        "tlsEnable": true,
+        "adminCredential": {
+            "id": "admin",
+            "password": "adminpw"
+        },
+        "enableAuthentication": true,
+        "connection": {
+            "timeout": {
+                "peer": {
+                    "endorser": "300"
+                }
+            }
+        }
+    },
+    "channels": {
+        "trial": {
+            "peers": {
+                "peer0.${ORG}.example.com": {}
+            }
+        }
+    },
+    "organizations": {
+        "${ORG}": {
+            "mspid": "${ORG}",
+            "peers": [
+                "peer0.${ORG}.example.com"
+            ],
+            "adminPrivateKeyPEM": {
+                "path": "/var/hyperledger/pki/${ORG}/admin/keystore/key.key"
+            },
+            "adminPrivateKey": {
+                "path": "/var/hyperledger/pki/${ORG}/admin/keystore/key.key"
+            },
+            "signedCertPEM": {
+                "path": "/var/hyperledger/pki/${ORG}/admin/signcerts/cert.pem"
+            },
+            "signedCert": {
+                "path": "/var/hyperledger/pki/${ORG}/admin/signcerts/cert.pem"
+            },
+            "certificateAuthorities": [
+                "ca.${ORG}.example.com"
+            ]
+        }
+    },
+    "peers": {
+        "peer0.${ORG}.example.com": {
+            "url": "grpcs://peer0.${ORG}.example.com:${P0PORT}",
+            "tlsCACerts": {
+                "pem": "${PEERPEM}"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "peer0.${ORG}.example.com",
+                "hostnameOverride": "peer0.${ORG}.example.com"
+            }
+        }
+    }
+}
