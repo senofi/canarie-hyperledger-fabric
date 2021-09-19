@@ -47,11 +47,13 @@ jobs:
 # trial-web-bostongh
       - name: Docker metadata trial-web-bostongh
         id: meta-trial-web-bostongh
+        if: github.event_name != 'pull_request'
         uses: docker/metadata-action@v3
         with:
           images: senofiinc/trial-web-bostongh
           
       - name: Build and push Docker image for bostongh
+        if: github.event_name != 'pull_request'
         uses: docker/build-push-action@v2
         with:
           context: ./clinical-trials-web
@@ -64,11 +66,13 @@ jobs:
 # trial-web-nova
       - name: Docker metadata trial-web-nova
         id: meta-trial-web-nova
+        if: github.event_name != 'pull_request'
         uses: docker/metadata-action@v3
         with:
           images: senofiinc/trial-web-nova
           
       - name: Build and push Docker image for nova
+        if: github.event_name != 'pull_request'
         uses: docker/build-push-action@v2
         with:
           context: ./clinical-trials-web
