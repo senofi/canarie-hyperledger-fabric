@@ -33,8 +33,8 @@ jobs:
       run: echo '::set-output name=CONTAINERS_COUNT::$(vagrant ssh -c "sudo docker ps -f 'status=running' -q | wc -l")'
 
     - name: Print containers count
-      run: echo "Containers not started up=${{ steps.docker-containers-not-up.outputs.CONTAINERS_COUNT }}"
+      run: echo "Containers started up = ${{ steps.docker-containers-not-up.outputs.CONTAINERS_COUNT }}"
 
     - name: Validate containers count
-      if: ${{ steps.docker-containers-not-up.outputs.CONTAINERS_COUNT }} != 17
-      run: exit 1
+      if: ${{ steps.docker-containers-not-up.outputs.CONTAINERS_COUNT != 17 }}
+      run: echo "Expected containers = 17; but found = ${{ steps.docker-containers-not-up.outputs.CONTAINERS_COUNT }}" & exit 1
