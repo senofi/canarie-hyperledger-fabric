@@ -8,10 +8,6 @@ on:
       - 'v[0-9]*'
     tags:
       - 'v*'
-  pull_request:
-    branches:
-      - 'main'
-      - 'develop'
   workflow_dispatch:
 
 jobs:
