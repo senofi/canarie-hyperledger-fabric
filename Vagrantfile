@@ -15,6 +15,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+BRANCH = ENV['BRANCH'] || 'main'
 
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
@@ -82,14 +83,13 @@ Vagrant.configure("2") do |config|
     # Ansible, Chef, Docker, Puppet and Salt are also available. Please see the
     # documentation for more information about their specific syntax and use.
   
-    # Replace RELEASENAME with the branch or tag you want to install from the KAT repository
-    config.vm.provision "shell", inline: <<-SHELL
-      RELEASENAME="develop"
+    config.vm.provision "shell", args: BRANCH, inline: <<-SHELL
+      RELEASENAME=$1
       date
       echo "Installing version '$RELEASENAME' into a VM, install logs available at /var/log/"
-      echo "Step 1: Installing Canarie Hyperledger Fabric Sample Solution"
+      echo "Step 1: Installing Hyperledger Fabric Sample Solution"
       pwd
       wget -q https://raw.githubusercontent.com/senofi/canarie-hyperledger-fabric/$RELEASENAME/scripts/startup.sh && bash ./startup.sh $RELEASENAME | tee /var/log/canarie.log && \
-        echo "Hyperledger Fabric Network Install Complete"
+        echo "Hyperledger Fabric Sample Solution Installed"
     SHELL
   end
