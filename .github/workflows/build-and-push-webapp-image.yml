@@ -41,8 +41,8 @@ jobs:
           file: ./clinical-trials-web/docker/Dockerfile
           build-args: uiprofile=fda
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta-trial-web-fda.outputs.tags }}
+          labels: ${{ steps.meta-trial-web-fda.outputs.labels }}
 
 # trial-web-bostongh
       - name: Docker metadata trial-web-bostongh
@@ -60,8 +60,8 @@ jobs:
           file: ./clinical-trials-web/docker/Dockerfile
           build-args: uiprofile=bostongh
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta-trial-web-bostongh.outputs.tags }}
+          labels: ${{ steps.meta-trial-web-bostongh.outputs.labels }}
 
 # trial-web-nova
       - name: Docker metadata trial-web-nova
@@ -79,5 +79,5 @@ jobs:
           file: ./clinical-trials-web/docker/Dockerfile
           build-args: uiprofile=nova
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta-trial-web-nova.outputs.tags }}
+          labels: ${{ steps.meta-trial-web-nova.outputs.labels }}
