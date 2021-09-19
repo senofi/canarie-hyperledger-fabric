@@ -1,12 +1,16 @@
-name: CI
+name: WEBAPP
 
 on:
   push:
-    branches: [ develop ]
+    branches:
+      - 'main'
+      - 'v[0-9]*'
+    tags:
+      - 'v*'
   pull_request:
-    branches: [ develop ]
-
-  # Allows you to run this workflow manually from the Actions tab
+    branches:
+      - 'main'
+      - 'develop'
   workflow_dispatch:
 
 jobs:
@@ -15,17 +19,60 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Docker meta
-        id: meta
+      - name: Login to DockerHub
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+# trial-web-fda
+      - name: Docker metadata trial-web-fda
+        id: meta-trial-web-fda
         uses: docker/metadata-action@v3
         with:
-          images: senofiinc/app
+          images: senofiinc/trial-web-fda
           
-      - name: Build and push Docker image
+      - name: Build and push Docker image for fda
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./docker/Dockerfile
-          push: true
+          file: ./clinical-trials-web/docker/Dockerfile
+          build-args: uiprofile=fda
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+# trial-web-bostongh
+      - name: Docker metadata trial-web-bostongh
+        id: meta-trial-web-bostongh
+        uses: docker/metadata-action@v3
+        with:
+          images: senofiinc/trial-web-bostongh
+          
+      - name: Build and push Docker image for bostongh
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./clinical-trials-web/docker/Dockerfile
+          build-args: uiprofile=bostongh
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+# trial-web-nova
+      - name: Docker metadata trial-web-nova
+        id: meta-trial-web-nova
+        uses: docker/metadata-action@v3
+        with:
+          images: senofiinc/trial-web-nova
+          
+      - name: Build and push Docker image for nova
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./clinical-trials-web/docker/Dockerfile
+          build-args: uiprofile=nova
+          push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
