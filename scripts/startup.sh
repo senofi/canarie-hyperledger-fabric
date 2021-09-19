@@ -16,6 +16,8 @@ rm -fr $HLF_FOLDER
 
 mkdir -p $HLF_FOLDER
 
+WEBAPP_IMAGE_TAG=develop
+
 echo "Cloning Git repository with branch: '$BRANCH'"
 git clone -b $BRANCH https://github.com/senofi/canarie-hyperledger-fabric.git $HLF_FOLDER && \
     cd $HLF_FOLDER && \
@@ -25,6 +27,5 @@ git clone -b $BRANCH https://github.com/senofi/canarie-hyperledger-fabric.git $H
     ./network.sh up -ca && \
     ./network.sh createChannel -c trial && \
     ./network.sh deployCC -ccn cctest -ccp ../clinical-trials-chaincode/ -ccl java -c trial && \
-    docker-compose -f docker/docker-compose-web-apps.yaml up -d && \
-    docker-compose -f docker/docker-compose-hlf-explorer.yaml up -d && \
-    echo "Installation Process Complete"
+    IMAGE_TAG=$WEBAPP_IMAGE_TAG docker-compose -f docker/docker-compose-web-apps.yaml up -d && \
+    docker-compose -f docker/docker-compose-hlf-explorer.yaml up -d
