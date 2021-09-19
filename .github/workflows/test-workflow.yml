@@ -30,8 +30,11 @@ jobs:
 
     - name: Find containers that may not be started up
       id: docker-containers-not-up
-      run: echo '::set-output name=CONTAINERS_COUNT::$(vagrant ssh -c "sudo docker ps | grep -v ' Up ' | wc -l")'
+      run: echo '::set-output name=CONTAINERS_COUNT::$(vagrant ssh -c "sudo docker ps -f 'status=running' -q | wc -l")'
+
+    - name: Print containers count
+      run: echo "Containers not started up=${{ steps.docker-containers-not-up.outputs.CONTAINERS_COUNT }}"
 
     - name: Validate containers count
-      if: ${{ steps.docker-containers-not-up.outputs.CONTAINERS_COUNT }} > 0
+      if: ${{ steps.docker-containers-not-up.outputs.CONTAINERS_COUNT }} != 17
       run: exit 1
