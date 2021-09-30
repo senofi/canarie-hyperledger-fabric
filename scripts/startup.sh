@@ -28,4 +28,6 @@ git clone -b $BRANCH https://github.com/senofi/canarie-hyperledger-fabric.git $H
     ./network.sh createChannel -c trial && \
     ./network.sh deployCC -ccn cctest -ccp ../clinical-trials-chaincode/ -ccl java -c trial && \
     IMAGE_TAG=$WEBAPP_IMAGE_TAG docker-compose -f docker/docker-compose-web-apps.yaml up -d && \
-    docker-compose -f docker/docker-compose-hlf-explorer.yaml up -d
+    docker-compose -f docker/docker-compose-hlf-explorer.yaml up -d && \
+    docker-compose -f docker/docker-compose-nginx.yaml up -d && \
+    echo "Installation and configuration process completed."
