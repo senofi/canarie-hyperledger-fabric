@@ -17,6 +17,6 @@ services:
       # - VPN_IP=172.0.0.0/8
       # - BACKEND_DOMAIN=
     ports:
-      - "80:80"
-  networks:
-    - test
+      - 80:80
+    networks:
+      - test
