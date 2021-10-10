@@ -24,8 +24,12 @@ WORKDIR /home/fabric
 
 COPY --from=builder /build/build/libs/*.war app.war
 
+ARG uiprofile
+
+RUN echo "Active Spring profile: $uiprofile"
+
 ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS \
-    SPRING_PROFILES_ACTIVE="prod" \
+    SPRING_PROFILES_ACTIVE="default,prod,$uiprofile" \
     JHIPSTER_SLEEP=0 \
     JAVA_OPTS=""
 
@@ -40,4 +44,4 @@ EXPOSE 8088 5701/udp
 
 #HEALTHCHECK --interval=1m --timeout=3s CMD wget -q -S http://localhost:8088/management/health || exit 1
 
-#docker build -f docker/Dockerfile -t tsvetang/client:latest .
+#docker build -f docker/Dockerfile -build-arg 'uiprofile=nova' -t senofi/trials-web:latest .

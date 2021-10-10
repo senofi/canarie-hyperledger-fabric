@@ -48,8 +48,6 @@ services:
       - ../organizations/peerOrganizations/genh.example.com/users/Admin@genh.example.com/msp/keystore/key.key:/var/hyperledger/pki/genh/admin/keystore/key.key
       - ../organizations/peerOrganizations/genh.example.com/connection-genh-explorer.json:/var/hyperledger/network/genh/connection.json
       - walletstore:/opt/explorer/wallet
-    ports:
-      - 8080:8080
     depends_on:
       explorerdb.mynetwork.com:
         condition: service_healthy

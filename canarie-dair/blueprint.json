@@ -1,0 +1,149 @@
+{
+    "image": "https://cloud.canarie.ca/storage/logos/uploads/AppTemplate/133/templateImage/hlf_original.png",
+    "tiers": {
+      "Hyperledger Fabric": {
+        "tierIndex": 1,
+        "tier": {
+          "bootOrder": 0,
+          "lockedFields": [
+            "bootOrder"
+          ]
+        },
+        "instances": [
+          {
+            "instance": {
+              "name": "hlf-sample-app-ubuntu-01",
+              "type": "UBUN"
+            },
+            "groups": {
+              "AWS-Canada": {
+                "clouds": {
+                  "AWS-Canada": {
+                    "userRemovedFields": [
+                      "instance.backup",
+                      "backup.commvaultClient",
+                      "backup.commvaultBackupSet",
+                      "backup.commvaultStoragePolicy",
+                      "virtualImage",
+                      "templateParameter"
+                    ],
+                    "hiddenFields": [
+                      "instance.powerScheduleType"
+                    ],
+                    "backup": {
+                      "veeamManagedServer": "",
+                      "createBackup": true,
+                      "jobAction": "new",
+                      "jobRetentionCount": "5",
+                      "enabled": true,
+                      "providerBackupType": 21,
+                      "showScheduledBackupWarning": false
+                    },
+                    "instance": {
+                      "layout": {
+                        "provisionTypeCode": "amazon",
+                        "code": "da0fb2d9-7c95-4a11-95dd-2935d49ce317",
+                        "instanceVersion": "20.04",
+                        "name": "Ubuntu",
+                        "id": 2695
+                      },
+                      "name": "hlf-sample-app-ubuntu-01",
+                      "description": "AWS Ubuntu 20.04 Instance for Hyperledger Fabric",
+                      "allowExisting": false,
+                      "type": "UBUN",
+                      "userGroup": {
+                        "id": ""
+                      }
+                    },
+                    "networkInterfaces": [
+                      {
+                        "ipMode": "",
+                        "primaryInterface": true,
+                        "network": {
+                          "id": ""
+                        }
+                      }
+                    ],
+                    "workflow": {
+                      "taskSetId": 67
+                    },
+                    "volumes": [
+                      {
+                        "size": 40,
+                        "maxIOPS": null,
+                        "name": "root",
+                        "rootVolume": true,
+                        "storageType": 19,
+                        "maxStorage": 42949672960
+                      }
+                    ],
+                    "lock": {
+                      "ports": true,
+                      "config": {
+                        "instanceProfile": true,
+                        "publicIpType": true,
+                        "kmsKeyId": true,
+                        "noAgent": true
+                      }
+                    },
+                    "config": {
+                      "isEC2": "false",
+                      "resourcePoolId": 2858,
+                      "publicIpType": "elasticIp",
+                      "createUser": true,
+                      "noAgent": false
+                    },
+                    "plan": {
+                      "code": "amazon-t3.medium",
+                      "id": 21
+                    },
+                    "lockedFields": [
+                      "instance.name",
+                      "volumes",
+                      "plan.id",
+                      "instance.layout.id",
+                      "version",
+                      "config.publicIpType",
+                      "instance.description",
+                      "workflow.taskSetId",
+                      "scale.typeId",
+                      "scale.instanceThresholdId",
+                      "deployment.id",
+                      "deployment.versionId",
+                      "backup.providerBackupType",
+                      "backup.name",
+                      "backup.jobAction",
+                      "backup.jobName",
+                      "backup.jobRetentionCount",
+                      "backup.jobSchedule",
+                      "instance.powerScheduleType",
+                      "layoutSize",
+                      "instance.hostName",
+                      "instance.networkDomain.id",
+                      "config.timezone",
+                      "config.noAgent",
+                      "config.instanceProfile",
+                      "config.kmsKeyId",
+                      "ports",
+                      "metadata",
+                      "instance.environmentPrefix",
+                      "evars",
+                      "config.createUser"
+                    ],
+                    "group": {
+                      "id": 5491
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "name": "Hyperledger Fabric (AWS)",
+    "description": "on AWS: Hyprledger Fabric with sample web application and blockchain integration",
+    "templateImage": "",
+    "type": "morpheus",
+    "category": "Blockchain"
+  }

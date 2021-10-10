@@ -1,0 +1,22 @@
+version: '2'
+
+networks:
+  test:
+
+services:
+  nginx:
+    image: nginx:1.17-alpine
+    volumes:
+      - ./nginx/apps.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/:/srv/www/site/
+    environment:
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=${COMPOSE_PROJECT_NAME}_test
+      - CORS_ALLOW_ORIGIN=*
+      # - LOAD_BALANCER_IP=172.0.0.0/8
+      # - VPN_IP=172.0.0.0/8
+      # - BACKEND_DOMAIN=
+    ports:
+      - 80:80
+    networks:
+      - test
