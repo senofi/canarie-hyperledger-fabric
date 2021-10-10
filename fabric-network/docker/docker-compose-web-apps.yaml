@@ -24,8 +24,6 @@ services:
         - ../organizations/peerOrganizations/genh.example.com/users/Admin@genh.example.com/msp/signcerts/cert.pem:/var/hyperledger/pki/genh/admin/signcerts/cert.pem
         - ../organizations/peerOrganizations/genh.example.com/users/Admin@genh.example.com/msp/keystore/key.key:/var/hyperledger/pki/genh/admin/keystore/key.key
         - ../organizations/peerOrganizations/genh.example.com/connection-genh.json:/var/hyperledger/network/genh/connection.json
-    # ports:
-    #   - 8088:8088
     networks:
       - test
 
@@ -48,8 +46,6 @@ services:
         - ../organizations/peerOrganizations/nova.example.com/users/Admin@nova.example.com/msp/signcerts/cert.pem:/var/hyperledger/pki/nova/admin/signcerts/cert.pem
         - ../organizations/peerOrganizations/nova.example.com/users/Admin@nova.example.com/msp/keystore/key.key:/var/hyperledger/pki/nova/admin/keystore/key.key
         - ../organizations/peerOrganizations/nova.example.com/connection-nova.json:/var/hyperledger/network/nova/connection.json
-    # ports:
-    #   - 8089:8088
     networks:
       - test
 
@@ -72,7 +68,5 @@ services:
         - ../organizations/peerOrganizations/regulator.example.com/users/Admin@regulator.example.com/msp/signcerts/cert.pem:/var/hyperledger/pki/regulator/admin/signcerts/cert.pem
         - ../organizations/peerOrganizations/regulator.example.com/users/Admin@regulator.example.com/msp/keystore/key.key:/var/hyperledger/pki/regulator/admin/keystore/key.key
         - ../organizations/peerOrganizations/regulator.example.com/connection-regulator.json:/var/hyperledger/network/regulator/connection.json
-    # ports:
-    #   - 8090:8088
     networks:
       - test
