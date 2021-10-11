@@ -49,6 +49,7 @@
           <img
             :src="`statics/${$config.logo}`"
             :alt="`${$config.companyName}`"
+            style="width: 80%;"
             class="logo"
           />
         </div>
