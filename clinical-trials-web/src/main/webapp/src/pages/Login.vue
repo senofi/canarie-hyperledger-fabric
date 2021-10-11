@@ -1,6 +1,9 @@
 <template>
   <q-page class="flex flex-center">
     <div class="column stretch" style="max-width: 400px; min-width: 300px">
+      <div class="row q-pb-md">
+        <img style="max-height: 200px;" :src="`statics/${this.logo}`" />
+      </div>
       <p class="text-h4" align="center">Login</p>
       <q-form @submit="handleSubmit" ref="loginForm" autocomplete="off">
         <q-input
@@ -39,7 +42,8 @@ export default {
       username: "",
       password: "",
       loading: false,
-      returnUrl: ""
+      returnUrl: "",
+      logo: this.$config.logo
     };
   },
   mounted() {
