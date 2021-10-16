@@ -1,5 +1,5 @@
 {
-    "image": "https://cloud.canarie.ca/storage/logos/uploads/AppTemplate/133/templateImage/hlf_original.png",
+    "image": "",
     "tiers": {
       "Hyperledger Fabric": {
         "tierIndex": 1,
@@ -98,7 +98,6 @@
                       "id": 21
                     },
                     "lockedFields": [
-                      "instance.name",
                       "volumes",
                       "plan.id",
                       "instance.layout.id",
@@ -141,8 +140,8 @@
         ]
       }
     },
-    "name": "Hyperledger Fabric (AWS)",
-    "description": "on AWS: Hyprledger Fabric with sample web application and blockchain integration",
+    "name": "SENOFI-HYPERLEDGER-FABRIC-STARTER-AWS",
+    "description": "on AWS: Hyprledger Fabric with a sample web application",
     "templateImage": "",
     "type": "morpheus",
     "category": "Blockchain"
