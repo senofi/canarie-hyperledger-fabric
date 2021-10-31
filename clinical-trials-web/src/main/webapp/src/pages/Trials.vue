@@ -158,13 +158,17 @@ export default {
     ...mapActions("trial", ["getTrials", "updateTrial"]),
     ...mapActions("ui", ["notifyError"]),
     acceptTrialCase(caseId) {
-      this.updateTrial({ caseId: caseId, status: "ACCEPTED" });
+      this.updateTrial({ caseId: caseId, status: "ACCEPTED" }).then(() =>
+        this.fetch()
+      );
     },
     isAcceptEnabled(status) {
       return status === "CLOSED" && this.$config.allow_accept;
     },
     changeStatus(caseId, status) {
-      this.updateTrial({ caseId: caseId, status: status });
+      this.updateTrial({ caseId: caseId, status: status }).then(() =>
+        this.fetch()
+      );
     },
     isActionEnabled(caseId, oldStatus, requestedStatus) {
       const allowedTransition = this.statusTransitions[oldStatus];
