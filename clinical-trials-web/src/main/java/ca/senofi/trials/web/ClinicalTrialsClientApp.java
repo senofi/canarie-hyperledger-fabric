@@ -1,4 +1,4 @@
-package io.consortia.trial;
+package ca.senofi.trials.web;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 //@EnableConfigurationProperties({ApplicationProperties.class})
 //@EnableDiscoveryClient
-public class ConsortiaFabricClientApp   {
+public class ClinicalTrialsClientApp   {
 
 
     /**
@@ -15,6 +15,6 @@ public class ConsortiaFabricClientApp   {
      * @param args the command line arguments.
      */
     public static void main(String[] args) {
-        SpringApplication.run(ConsortiaFabricClientApp.class, args);
+        SpringApplication.run(ClinicalTrialsClientApp.class, args);
     }
 }

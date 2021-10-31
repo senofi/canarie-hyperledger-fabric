@@ -1,4 +1,4 @@
-package io.consortia.trial.webclient.rest;
+package ca.senofi.trials.web.webclient.rest;
 
 import javax.validation.Valid;
 
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.consortia.trial.webclient.service.ContractService; 
+import ca.senofi.trials.web.webclient.service.ContractService; 
 
 @RestController
 @RequestMapping("/api")

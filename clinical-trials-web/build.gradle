@@ -79,13 +79,13 @@ idea {
 
 defaultTasks "bootRun"
 
-group = "io.consortia.fabric.webclient"
+group = "ca.senofi.trials.web"
 version = "0.0.1-SNAPSHOT"
 
 description = ""
 
 bootWar {
-    mainClassName = "io.consortia.trial.ConsortiaFabricClientApp"
+    mainClassName = "ca.senofi.trials.web.ClinicalTrialsClientApp"
     includes = ["WEB-INF/**", "META-INF/**"]
 }
 
@@ -96,7 +96,7 @@ war {
 }
 
 springBoot {
-    mainClassName = "io.consortia.trial.ConsortiaFabricClientApp"
+    mainClassName = "ca.senofi.trials.web.ClinicalTrialsClientApp"
 }
 
 test {

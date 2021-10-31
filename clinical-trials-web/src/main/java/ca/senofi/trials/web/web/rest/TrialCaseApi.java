@@ -1,4 +1,4 @@
-package io.consortia.trial.web.rest;
+package ca.senofi.trials.web.web.rest;
 
 import java.util.List;
 
@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.consortia.trial.service.NewTrialCaseDTO;
-import io.consortia.trial.service.TrialCaseDTO;
-import io.consortia.trial.service.TrialService;
+import ca.senofi.trials.web.service.NewTrialCaseDTO;
+import ca.senofi.trials.web.service.TrialCaseDTO;
+import ca.senofi.trials.web.service.TrialService;
 
 @RestController
 @RequestMapping("/api")

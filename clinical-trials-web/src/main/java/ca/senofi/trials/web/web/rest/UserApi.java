@@ -1,4 +1,4 @@
-package io.consortia.trial.web.rest;
+package ca.senofi.trials.web.web.rest;
 
 import java.security.Principal;
 

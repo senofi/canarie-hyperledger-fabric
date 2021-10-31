@@ -1,4 +1,4 @@
-package io.consortia.trial.service.impl;
+package ca.senofi.trials.web.service.impl;
 
 import java.io.IOException;
 import java.util.Calendar;
@@ -12,13 +12,13 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import io.consortia.trial.service.NewTrialCaseDTO;
-import io.consortia.trial.service.TrialCaseDTO;
-import io.consortia.trial.service.TrialService;
-import io.consortia.trial.service.UpdateTrialCaseDTO;
-import io.consortia.trial.webclient.rest.InvokeInputDTO;
-import io.consortia.trial.webclient.rest.QueryResultDTO;
-import io.consortia.trial.webclient.service.ContractService;
+import ca.senofi.trials.web.service.NewTrialCaseDTO;
+import ca.senofi.trials.web.service.TrialCaseDTO;
+import ca.senofi.trials.web.service.TrialService;
+import ca.senofi.trials.web.service.UpdateTrialCaseDTO;
+import ca.senofi.trials.web.webclient.rest.InvokeInputDTO;
+import ca.senofi.trials.web.webclient.rest.QueryResultDTO;
+import ca.senofi.trials.web.webclient.service.ContractService;
 
 
 @Service
