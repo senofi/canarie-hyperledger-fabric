@@ -1,4 +1,4 @@
-package io.consortia.trial.webclient.rest;
+package ca.senofi.trials.web.webclient.rest;
  
 import lombok.Getter;
 import lombok.Setter;

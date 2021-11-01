@@ -1,4 +1,4 @@
-package io.consortia.trial;
+package ca.senofi.trials.web;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

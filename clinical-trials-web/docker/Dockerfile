@@ -35,7 +35,7 @@ ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS \
 
 ADD ./docker/entrypoint.sh entrypoint.sh
 RUN chmod 755 entrypoint.sh && chown fabric:fabric entrypoint.sh
-RUN mkdir -p /var/consortia/app && chown fabric:fabric /var/consortia/app 
+RUN mkdir -p /var/senofi/app && chown fabric:fabric /var/senofi/app 
 USER fabric
 
 ENTRYPOINT ["./entrypoint.sh"]

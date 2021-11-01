@@ -1,4 +1,4 @@
-package io.consortia.trial.webclient.security;
+package ca.senofi.trials.web.webclient.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

@@ -1,10 +1,10 @@
-package io.consortia.trial.webclient.service;
+package ca.senofi.trials.web.webclient.service;
 
 import javax.validation.Valid;
 
-import io.consortia.trial.webclient.rest.InvokeInputDTO;
-import io.consortia.trial.webclient.rest.InvokeResultDTO;
-import io.consortia.trial.webclient.rest.QueryResultDTO;
+import ca.senofi.trials.web.webclient.rest.InvokeInputDTO;
+import ca.senofi.trials.web.webclient.rest.InvokeResultDTO;
+import ca.senofi.trials.web.webclient.rest.QueryResultDTO;
 
 public interface ContractService {
 

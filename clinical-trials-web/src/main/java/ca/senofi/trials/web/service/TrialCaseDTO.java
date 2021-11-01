@@ -1,4 +1,4 @@
-package io.consortia.trial.service;
+package ca.senofi.trials.web.service;
 
 import java.util.Date;
 

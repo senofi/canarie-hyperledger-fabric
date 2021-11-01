@@ -1,4 +1,4 @@
-package io.consortia.trial.webclient.service.impl;
+package ca.senofi.trials.web.webclient.service.impl;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -20,10 +20,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import io.consortia.trial.webclient.rest.InvokeInputDTO;
-import io.consortia.trial.webclient.rest.InvokeResultDTO;
-import io.consortia.trial.webclient.rest.QueryResultDTO;
-import io.consortia.trial.webclient.service.ContractService;
+import ca.senofi.trials.web.webclient.rest.InvokeInputDTO;
+import ca.senofi.trials.web.webclient.rest.InvokeResultDTO;
+import ca.senofi.trials.web.webclient.rest.QueryResultDTO;
+import ca.senofi.trials.web.webclient.service.ContractService;
 
 @Service
 public class ContractServiceImpl implements ContractService {
