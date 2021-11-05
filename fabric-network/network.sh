@@ -300,10 +300,9 @@ function deployCC() {
 
 # Tear down running network
 function networkDown() {
-  # stop org3 containers also in addition to nova and genh, in case we were running sample to add org3
+  # stop regulator, nova and genh
   docker-compose -f $COMPOSE_FILE_BASE -f $COMPOSE_FILE_COUCH -f $COMPOSE_FILE_CA down --volumes --remove-orphans
-  #docker-compose -f $COMPOSE_FILE_COUCH_ORG3 -f $COMPOSE_FILE_ORG3 down --volumes --remove-orphans
-  docker-compose -f $COMPOSE_FILE_WEB down --volumes --remove-orphans
+    docker-compose -f $COMPOSE_FILE_WEB down --volumes --remove-orphans
   docker-compose -f $COMPOSE_FILE_EXPL down --volumes --remove-orphans
   # Don't remove the generated artifacts -- note, the ledgers are always removed
   if [ "$MODE" != "restart" ]; then
@@ -319,7 +318,6 @@ function networkDown() {
     docker run --rm -v "$(pwd):/data" busybox sh -c 'cd /data && rm -rf organizations/fabric-ca/regulator/msp organizations/fabric-ca/regulator/tls-cert.pem organizations/fabric-ca/regulator/ca-cert.pem organizations/fabric-ca/regulator/IssuerPublicKey organizations/fabric-ca/regulator/IssuerRevocationPublicKey organizations/fabric-ca/regulator/fabric-ca-server.db'
     docker run --rm -v "$(pwd):/data" busybox sh -c 'cd /data && rm -rf organizations/fabric-ca/genh/msp organizations/fabric-ca/genh/tls-cert.pem organizations/fabric-ca/genh/ca-cert.pem organizations/fabric-ca/genh/IssuerPublicKey organizations/fabric-ca/genh/IssuerRevocationPublicKey organizations/fabric-ca/genh/fabric-ca-server.db'
     docker run --rm -v "$(pwd):/data" busybox sh -c 'cd /data && rm -rf organizations/fabric-ca/ordererOrg/msp organizations/fabric-ca/ordererOrg/tls-cert.pem organizations/fabric-ca/ordererOrg/ca-cert.pem organizations/fabric-ca/ordererOrg/IssuerPublicKey organizations/fabric-ca/ordererOrg/IssuerRevocationPublicKey organizations/fabric-ca/ordererOrg/fabric-ca-server.db'
-    docker run --rm -v "$(pwd):/data" busybox sh -c 'cd /data && rm -rf addOrg3/fabric-ca/org3/msp addOrg3/fabric-ca/org3/tls-cert.pem addOrg3/fabric-ca/org3/ca-cert.pem addOrg3/fabric-ca/org3/IssuerPublicKey addOrg3/fabric-ca/org3/IssuerRevocationPublicKey addOrg3/fabric-ca/org3/fabric-ca-server.db'
     # remove channel and script artifacts
     docker run --rm -v "$(pwd):/data" busybox sh -c 'cd /data && rm -rf channel-artifacts log.txt *.tar.gz'
   fi
@@ -355,11 +353,7 @@ COMPOSE_FILE_WEB=docker/docker-compose-web-apps.yaml
 COMPOSE_FILE_COUCH=docker/docker-compose-couch.yaml
 # certificate authorities compose file
 COMPOSE_FILE_CA=docker/docker-compose-ca.yaml
-# use this as the docker compose couch file for org3
-#COMPOSE_FILE_COUCH_ORG3=addOrg3/docker/docker-compose-couch-org3.yaml
-# use this as the default docker-compose yaml definition for org3
-COMPOSE_FILE_ORG3=addOrg3/docker/docker-compose-org3.yaml
-#
+
 # chaincode language defaults to "NA"
 CC_SRC_LANGUAGE="NA"
 # Chaincode version
