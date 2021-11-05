@@ -48,7 +48,7 @@ Vagrant.configure("2") do |config|
   
     # Create a private network, which allows host-only access to the machine
     # using a specific IP.
-    config.vm.network "private_network", type: "dhcp"
+    # config.vm.network "private_network", type: "dhcp"
   
     # Create a public network, which generally matched to bridged network.
     # Bridged networks make the machine appear as another physical device on
