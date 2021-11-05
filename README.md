@@ -34,14 +34,11 @@ The only limitation for any other cloud provider is that the operating system is
 
 ## How to Use the Application
 
-Open 3 browser tabs and use the credentials for the web apps: user/pass
+Open a browser and go to http://localhost where are the links to the applications' landing pages.
+To login to the regulator, nova and general hospital applications user the follwoing credenatials: `user/pass`
 
-- http://localhost:8080/genh - create a case as a hospital representative
-- http://localhost:8080/nova - investigate a case as a pharma processor
-- http://localhost:8080/regulator - see the status as regulator
-
-To view the blockchain transactions follow the URL below:
-- http://localhost:8080/explorer - HLF blockcahin explorer (credentials: admin/adminpw)
+To view the blockchain transactions click on the blockchain explorer link on the landing page.
+- http://localhost/explorer - HLF blockcahin explorer (credentials: `admin/adminpw`)
 
 # License
 
