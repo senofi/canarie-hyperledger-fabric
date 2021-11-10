@@ -35,7 +35,7 @@ The only limitation for any other cloud provider is that the operating system is
 ## How to Use the Application
 
 Open a browser and go to http://localhost where are the links to the applications' landing pages.
-To login to the regulator, nova and general hospital applications user the follwoing credenatials: `user/pass`
+To login to the regulator, nova and general hospital applications use the following credentials: `user/pass`
 
 To view the blockchain transactions click on the blockchain explorer link on the landing page.
 - http://localhost/explorer - HLF blockcahin explorer (credentials: `admin/adminpw`)
