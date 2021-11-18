@@ -1,0 +1,228 @@
+
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        gradlePluginPortal()
+        maven { url "https://repo.spring.io/plugins-release" }
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+    }
+    dependencies {
+        classpath("io.spring.gradle:dependency-management-plugin:${spring_dependency_plugin_version}")
+        classpath "net.ltgt.gradle:gradle-apt-plugin:0.21"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${spring_boot_version}"
+        classpath "io.spring.gradle:propdeps-plugin:0.0.10.RELEASE"
+        classpath "org.openapitools:openapi-generator-gradle-plugin:3.3.4"
+        classpath "gradle.plugin.com.gorylenko.gradle-git-properties:gradle-git-properties:1.5.2"
+        classpath "org.unbroken-dome.gradle-plugins:gradle-testsets-plugin:2.1.1"
+        classpath "gradle.plugin.com.gorylenko.gradle-git-properties:gradle-git-properties:2.0.0"
+    }
+}
+
+plugins {
+    id "java"
+    id "maven-publish"
+    id "war"
+    id "idea"
+    id "jacoco"
+    id "com.google.cloud.tools.jib" version "0.9.11"
+    id "com.github.node-gradle.node" version "1.3.0"
+    //jhipster-needle-gradle-plugins - JHipster will add additional gradle plugins here
+}
+
+
+apply plugin: 'io.spring.dependency-management'
+
+
+    dependencyManagement {
+        imports {
+            mavenBom 'io.github.jhipster:jhipster-dependencies:' + jhipster_dependencies_version
+        }
+        dependencies {
+            dependency "org.projectlombok:lombok:${lombok_version}"
+            dependency "org.apache.commons:commons-collections4:${commons_collections_version}"
+        }
+    }
+
+
+wrapper {
+    gradleVersion = '5.4.1'
+}
+
+sourceCompatibility=1.8
+targetCompatibility=1.8
+assert System.properties["java.specification.version"] == "1.8" || "11" || "12"
+
+apply plugin: "org.springframework.boot"
+apply plugin: "propdeps"
+
+apply from: "gradle/docker.gradle"
+//jhipster-needle-gradle-apply-from - JHipster will add additional gradle scripts to be applied here
+
+if (project.hasProperty("prod")) {
+    apply from: "gradle/profile_prod.gradle"
+} else {
+    apply from: "gradle/profile_dev.gradle"
+}
+
+if (project.hasProperty("zipkin")) {
+    apply from: "gradle/zipkin.gradle"
+}
+
+idea {
+    module {
+        excludeDirs += files("node_modules")
+    }
+}
+
+
+defaultTasks "bootRun"
+
+group = "ca.senofi.trials.web"
+version = "0.0.1-SNAPSHOT"
+
+description = ""
+
+bootWar {
+    mainClassName = "ca.senofi.trials.web.ClinicalTrialsClientApp"
+    includes = ["WEB-INF/**", "META-INF/**"]
+}
+
+war {
+    enabled = true
+    extension = "war.original"
+    includes = ["WEB-INF/**", "META-INF/**"]
+}
+
+springBoot {
+    mainClassName = "ca.senofi.trials.web.ClinicalTrialsClientApp"
+}
+
+test {
+    useJUnitPlatform()
+    exclude "**/*IT*", "**/*IntTest*"
+    testLogging {
+        events 'FAILED', 'SKIPPED'
+    }
+    // uncomment if the tests reports are not generated
+    // see https://github.com/jhipster/generator-jhipster/pull/2771 and https://github.com/jhipster/generator-jhipster/pull/4484
+    // ignoreFailures true
+    reports.html.enabled = false
+}
+
+task integrationTest(type: Test) {
+    useJUnitPlatform()
+    description = "Execute integration tests."
+    group = "verification"
+    include "**/*IT*", "**/*IntTest*"
+
+    testLogging {
+        events 'FAILED', 'SKIPPED'
+    }
+    // uncomment if the tests reports are not generated
+    // see https://github.com/jhipster/generator-jhipster/pull/2771 and https://github.com/jhipster/generator-jhipster/pull/4484
+    // ignoreFailures true
+    reports.html.enabled = false
+}
+
+check.dependsOn integrationTest
+task testReport(type: TestReport) {
+    destinationDir = file("$buildDir/reports/tests")
+    reportOn test
+}
+
+task integrationTestReport(type: TestReport) {
+    destinationDir = file("$buildDir/reports/tests")
+    reportOn integrationTest
+}
+
+configurations {
+    providedRuntime
+    implementation.exclude module: "spring-boot-starter-tomcat"
+}
+repositories {
+        mavenLocal()
+        mavenCentral()
+        gradlePluginPortal()
+        // maven { url "https://repo.spring.io/plugins-release" }
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+}
+
+dependencies {
+    
+    compileOnly "org.projectlombok:lombok"
+    annotationProcessor 'org.projectlombok:lombok'
+    
+    // import JHipster dependencies BOM
+    //implementation platform("io.github.jhipster:jhipster-dependencies:${jhipster_dependencies_version}" )
+
+    // Use ", version: jhipster_dependencies_version, changing: true" if you want
+    // to use a SNAPSHOT release instead of a stable release
+    //implementation group: "io.github.jhipster", name: "jhipster-framework"
+    implementation "org.springframework.boot:spring-boot-starter-cache"
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-hppc"
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310"
+    implementation "com.fasterxml.jackson.core:jackson-annotations"
+    implementation "com.fasterxml.jackson.core:jackson-databind"
+    implementation "com.fasterxml.jackson.module:jackson-module-afterburner"
+    implementation "javax.cache:cache-api"
+    implementation "org.apache.commons:commons-lang3"
+    implementation "commons-io:commons-io"
+    implementation "org.apache.commons:commons-collections4"
+    implementation "javax.transaction:javax.transaction-api"
+    implementation "org.springframework.boot:spring-boot-loader-tools"
+    implementation "org.springframework.boot:spring-boot-starter-mail"
+    implementation "org.springframework.boot:spring-boot-starter-logging"
+    implementation "org.springframework.boot:spring-boot-starter-actuator"
+    implementation "org.springframework.boot:spring-boot-starter-aop"
+    implementation "org.springframework.boot:spring-boot-starter-security"
+    implementation ("org.springframework.boot:spring-boot-starter-web") {
+        exclude module: "spring-boot-starter-tomcat"
+    }
+    implementation "org.springframework.boot:spring-boot-starter-undertow"
+    implementation "org.springframework.retry:spring-retry"
+    implementation "org.springframework.security:spring-security-config"
+    implementation "org.springframework.security:spring-security-data"
+    implementation "org.springframework.security:spring-security-web"
+    implementation "org.springframework.boot:spring-boot-starter-oauth2-client"
+    implementation "org.springframework.boot:spring-boot-starter-oauth2-resource-server"
+    implementation "org.hyperledger.fabric:fabric-gateway-java:1.4.5"
+    implementation "javax.json:javax.json-api:1.1.4"
+    implementation ("io.springfox:springfox-swagger2") {
+        exclude module: "mapstruct"
+    }
+    implementation "org.yaml:snakeyaml"
+    
+    implementation "io.springfox:springfox-bean-validators"
+    implementation "org.mapstruct:mapstruct:${mapstruct_version}"
+    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstruct_version}"
+    annotationProcessor ("org.springframework.boot:spring-boot-configuration-processor:${spring_boot_version}") {
+        exclude group: "com.vaadin.external.google", module: "android-json"
+    }
+    testImplementation "com.jayway.jsonpath:json-path"
+    testImplementation ("org.springframework.boot:spring-boot-starter-test") {
+        exclude module: "junit"
+        exclude group: "com.vaadin.external.google", module: "android-json"
+    }
+    testImplementation "org.springframework.security:spring-security-test"
+    testImplementation "org.springframework.boot:spring-boot-test"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine"
+    testImplementation "org.assertj:assertj-core"
+    testImplementation "junit:junit"
+    testImplementation "org.mockito:mockito-core"
+    testImplementation "org.hamcrest:hamcrest-library"
+    //jhipster-needle-gradle-dependency - JHipster will add additional dependencies here
+}
+
+task cleanResources(type: Delete) {
+    delete "build/resources"
+    delete "src/main/webapp/node_modules"
+    delete "src/main/webapp/dist"
+    delete "node_modules"
+}
+
+compileJava.dependsOn processResources
+processResources.dependsOn bootBuildInfo
+clean.dependsOn cleanResources

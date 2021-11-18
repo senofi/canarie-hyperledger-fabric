@@ -1,0 +1,72 @@
+version: '2'
+
+networks:
+  test:
+
+services:
+
+  genh-web-app:
+    container_name: genh-web-app
+    image: senofiinc/trial-web-bostongh:$IMAGE_TAG
+    environment:
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=${COMPOSE_PROJECT_NAME}_test
+      - CONS_FABRIC_MSP_ID=genh
+      - CONS_FABRIC_MSP_DOMAIN=genh.example.com
+      - CONS_FABRIC_FOLDER=/var/hyperledger/
+      - adminUser=user
+      - adminPassword=pass
+      - contractId=cctest
+      - channel=trial
+    volumes:
+        - /var/run/:/host/var/run/
+        - ../organizations/peerOrganizations/genh.example.com/tlsca/tlsca.genh.example.com-cert.pem:/var/hyperledger/pki/genh/tlsca/cert.pem
+        - ../organizations/peerOrganizations/genh.example.com/users/Admin@genh.example.com/msp/signcerts/cert.pem:/var/hyperledger/pki/genh/admin/signcerts/cert.pem
+        - ../organizations/peerOrganizations/genh.example.com/users/Admin@genh.example.com/msp/keystore/key.key:/var/hyperledger/pki/genh/admin/keystore/key.key
+        - ../organizations/peerOrganizations/genh.example.com/connection-genh.json:/var/hyperledger/network/genh/connection.json
+    networks:
+      - test
+
+  nova-web-app:
+    container_name: nova-web-app
+    image: senofiinc/trial-web-nova:$IMAGE_TAG
+    environment:
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=${COMPOSE_PROJECT_NAME}_test
+      - CONS_FABRIC_MSP_ID=nova
+      - CONS_FABRIC_MSP_DOMAIN=nova.example.com
+      - CONS_FABRIC_FOLDER=/var/hyperledger/
+      - adminUser=user
+      - adminPassword=pass
+      - contractId=cctest
+      - channel=trial
+    volumes:
+        - /var/run/:/host/var/run/
+        - ../organizations/peerOrganizations/nova.example.com/tlsca/tlsca.nova.example.com-cert.pem:/var/hyperledger/pki/nova/tlsca/cert.pem
+        - ../organizations/peerOrganizations/nova.example.com/users/Admin@nova.example.com/msp/signcerts/cert.pem:/var/hyperledger/pki/nova/admin/signcerts/cert.pem
+        - ../organizations/peerOrganizations/nova.example.com/users/Admin@nova.example.com/msp/keystore/key.key:/var/hyperledger/pki/nova/admin/keystore/key.key
+        - ../organizations/peerOrganizations/nova.example.com/connection-nova.json:/var/hyperledger/network/nova/connection.json
+    networks:
+      - test
+
+  regulator-web-app:
+    container_name: regulator-web-app
+    image: senofiinc/trial-web-fda:$IMAGE_TAG
+    environment:
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=${COMPOSE_PROJECT_NAME}_test
+      - CONS_FABRIC_MSP_ID=regulator
+      - CONS_FABRIC_MSP_DOMAIN=regulator.example.com
+      - CONS_FABRIC_FOLDER=/var/hyperledger/
+      - adminUser=user
+      - adminPassword=pass
+      - contractId=cctest
+      - channel=trial
+    volumes:
+        - /var/run/:/host/var/run/
+        - ../organizations/peerOrganizations/regulator.example.com/tlsca/tlsca.regulator.example.com-cert.pem:/var/hyperledger/pki/regulator/tlsca/cert.pem
+        - ../organizations/peerOrganizations/regulator.example.com/users/Admin@regulator.example.com/msp/signcerts/cert.pem:/var/hyperledger/pki/regulator/admin/signcerts/cert.pem
+        - ../organizations/peerOrganizations/regulator.example.com/users/Admin@regulator.example.com/msp/keystore/key.key:/var/hyperledger/pki/regulator/admin/keystore/key.key
+        - ../organizations/peerOrganizations/regulator.example.com/connection-regulator.json:/var/hyperledger/network/regulator/connection.json
+    networks:
+      - test

@@ -1,0 +1,40 @@
+name: TEST
+
+on:
+  push:
+    branches:
+      - 'main'
+      - 'develop'
+      - 'v[0-9]*'
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  vagrant-up:
+    runs-on: macos-10.15
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Cache Vagrant boxes
+      uses: actions/cache@v2
+      with:
+        path: ~/.vagrant.d/boxes
+        key: ${{ runner.os }}-vagrant-${{ hashFiles('Vagrantfile') }}
+        restore-keys: |
+          ${{ runner.os }}-vagrant-
+
+    - name: Run vagrant up
+      run: BRANCH=${GITHUB_REF#refs/heads/} vagrant up
+
+    - name: Find containers that may not be started up
+      id: docker-containers-up
+      run: echo '::set-output name=CONTAINERS_COUNT::$(vagrant ssh -c "sudo docker ps -f 'status=running' -q | wc -l")'
+
+    - name: Print containers count
+      run: echo "Containers started up = ${{ steps.docker-containers-up.outputs.CONTAINERS_COUNT }}"
+
+    - name: Validate containers count
+      if: ${{ steps.docker-containers-up.outputs.CONTAINERS_COUNT < 18 }}
+      run: echo "Expected containers in running state = 18; but found = ${{ steps.docker-containers-up.outputs.CONTAINERS_COUNT }}" & exit 1

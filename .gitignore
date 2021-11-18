@@ -1,0 +1,10 @@
+.gradle
+.project
+.classpath
+.settings/
+.vagrant/
+
+build/
+bin/
+
+node_modules/
