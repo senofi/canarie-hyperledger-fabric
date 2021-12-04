@@ -23,13 +23,13 @@ Steps to run on a Linux machine (the solution has been tested on Ubuntu):
 
 ### Vagrant
 
-The sample solution could be installed locally using a [Vagrant|https://www.vagrantup.com/] virtual machine (VM). The default provider that Vagrant relies on is [VirtualBox|https://www.virtualbox.org/]. Make sure that both of them are installed locally before proceeding.
+The sample solution could be installed locally using a [Vagrant](https://www.vagrantup.com/) virtual machine (VM). The default provider that Vagrant relies on is [VirtualBox](https://www.virtualbox.org/). Make sure that both of them are installed locally before proceeding.
 
 To get the VM up and running simply run `vagrant up` in the root folder. This will run the default branch set up (main). To run against a specific branch run `BRANCH=<branch-name> vagrant up`.
 
 ### Cloud Provider
 
-We support Canarie DAIR Cloud and you can find more information on our BoosterPack and others [here|https://www.canarie.ca/cloud/boosterpacks/].
+We support Canarie DAIR Cloud and you can find more information on our BoosterPack and others [here](https://www.canarie.ca/cloud/boosterpacks/).
 The only limitation for any other cloud provider is that the operating system is Ubuntu 20.04 or above.
 
 ## How to Use the Application
