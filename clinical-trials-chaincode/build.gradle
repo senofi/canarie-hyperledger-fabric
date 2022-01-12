@@ -21,13 +21,17 @@ repositories {
 }
 
 dependencies {
-    implementation group: 'org.hyperledger.fabric-chaincode-java', name: 'fabric-chaincode-protos', version: '2.+'
-    implementation group: 'org.hyperledger.fabric-chaincode-java', name: 'fabric-chaincode-shim', version: '2.+'
-    implementation group: 'com.google.protobuf', name: 'protobuf-java', version: '3.12.+'
-    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    implementation 'org.hyperledger.fabric-chaincode-java:fabric-chaincode-protos:2.+'
+    implementation 'org.hyperledger.fabric-chaincode-java:fabric-chaincode-shim:2.+'
+    implementation 'com.google.protobuf:protobuf-java:3.19.+'
     implementation 'org.glassfish:javax.json:1.1.0-M1'
-    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.9.0'
-    implementation group: 'commons-logging', name: 'commons-logging', version: '1.2'
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+    implementation 'org.apache.logging.log4j:log4j-core:2.0-alpha1'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.10.0'
+    implementation 'commons-logging:commons-logging:1.2'
+    implementation 'org.codehaus.plexus:plexus-utils:3.0.16'
+
+    testImplementation 'junit:junit:4.12'
 }
 
 shadowJar {
