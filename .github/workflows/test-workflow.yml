@@ -6,8 +6,13 @@ on:
       - 'main'
       - 'develop'
       - 'v[0-9]*'
+      - 'release/*'
     tags:
       - 'v*'
+  pull_request:
+    branches:
+      - 'release/*'
+
   workflow_dispatch:
 
 jobs:

@@ -5,7 +5,7 @@ networks:
 
 services:
   nginx:
-    image: nginx:1.17-alpine
+    image: nginx:1.20-alpine
     volumes:
       - ./nginx/apps.conf:/etc/nginx/conf.d/default.conf
       - ./nginx/:/srv/www/site/
