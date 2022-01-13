@@ -6,6 +6,7 @@ on:
       - 'main'
       - 'develop'
       - 'v[0-9]*'
+      - 'release*'
     tags:
       - 'v*'
   workflow_dispatch:
