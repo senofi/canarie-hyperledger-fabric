@@ -23,10 +23,10 @@ repositories {
 dependencies {
     implementation 'org.hyperledger.fabric-chaincode-java:fabric-chaincode-protos:2.+'
     implementation 'org.hyperledger.fabric-chaincode-java:fabric-chaincode-shim:2.+'
-    implementation 'com.google.protobuf:protobuf-java:3.19.+'
+    implementation 'com.google.protobuf:protobuf-java:3.19.2'
     implementation 'org.glassfish:javax.json:1.1.0-M1'
-    implementation 'com.fasterxml.jackson.core:jackson-databind'
-    implementation 'org.apache.logging.log4j:log4j-core:2.0-alpha1'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.10.+'
+    implementation 'org.apache.logging.log4j:log4j-core:2.17.0'
     implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.10.0'
     implementation 'commons-logging:commons-logging:1.2'
     implementation 'org.codehaus.plexus:plexus-utils:3.0.16'
