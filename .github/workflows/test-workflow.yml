@@ -6,12 +6,12 @@ on:
       - 'main'
       - 'develop'
       - 'v[0-9]*'
-      - 'release*'
+      - 'release/*'
     tags:
       - 'v*'
   pull_request:
     branches:
-      - 'release*'
+      - 'release/*'
 
   workflow_dispatch:
 
