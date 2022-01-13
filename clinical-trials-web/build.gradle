@@ -169,13 +169,14 @@ dependencies {
     implementation "com.google.protobuf:protobuf-java:3.19.2"
     implementation "com.nimbusds:nimbus-jose-jwt:7.9"
     implementation "io.netty:netty-handler:4.1.46.Final"
-    implementation "io.undertow:undertow-core:2.2.0.Final"
+    implementation "io.undertow:undertow-core:2.2.4.Final"
     implementation "net.minidev:json-smart:2.4.1"
     implementation "org.apache.commons:commons-compress:1.21"
     implementation "org.apache.logging.log4j:log4j-api:2.17.1"
     implementation "org.apache.logging.log4j:log4j-core:2.17.1"
-    implementation "org.springframework.security:spring-security-core:5.2.9.RELEASE"
+    implementation "org.springframework.security:spring-security-core:5.2.11.RELEASE"
     implementation "org.springframework.security:spring-security-web:5.2.9.RELEASE"
+    implementation "org.springframework:spring-webmvc:5.1.13.RELEASE"
     implementation "com.fasterxml.jackson.module:jackson-module-afterburner"
     implementation "javax.cache:cache-api"
     implementation "org.apache.commons:commons-lang3"
@@ -203,7 +204,7 @@ dependencies {
     implementation ("io.springfox:springfox-swagger2") {
         exclude module: "mapstruct"
     }
-    implementation "org.yaml:snakeyaml"
+    implementation "org.yaml:snakeyaml:1.26"
     
     implementation "io.springfox:springfox-bean-validators"
     implementation "org.mapstruct:mapstruct:${mapstruct_version}"
