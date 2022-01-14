@@ -175,7 +175,7 @@ dependencies {
     implementation "io.netty:netty-buffer:4.1.73.Final"
     implementation "io.netty:netty-transport:4.1.73.Final"
     implementation "io.netty:netty-codec:4.1.73.Final"
-    implementation "io.netty:netty-tcnative-boringssl-static:2.0.34.Final"
+    implementation "io.netty:netty-tcnative-boringssl-static:2.0.42.Final"
     implementation "io.undertow:undertow-core:2.2.4.Final"
     implementation "net.minidev:json-smart:2.4.1"
     implementation "org.apache.commons:commons-compress:1.21"
