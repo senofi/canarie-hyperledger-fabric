@@ -361,7 +361,7 @@ CC_VERSION="1.0"
 # Chaincode definition sequence
 CC_SEQUENCE=1
 # default image tag
-IMAGETAG="2.3.3"
+IMAGETAG="2.4.1"
 # default ca image tag
 CA_IMAGETAG="1.5.2"
 # default database
