@@ -9,10 +9,10 @@ export default {
   [SET_ERROR](state, error) {
     const messages = {
       http: {
-        400: "Server respondded with status 400",
+        400: "Server responded with status 400",
         401: "Not authorized",
         403: "Forbidden",
-        500: "Server respondded with error"
+        500: "Server responded with error"
       }
     };
 
