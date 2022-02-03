@@ -17,7 +17,7 @@ Steps to run on a Linux machine (the solution has been tested on Ubuntu):
   - ./network.sh up -ca
   - ./network.sh createChannel -c trial
   - ./network.sh deployCC -ccn cctest -ccp ../clinical-trials-chaincode/ -ccl java -c trial
-  - IMAGE_TAG=develop docker-compose -f docker/docker-compose-web-apps.yaml up -d
+  - IMAGE_TAG=main docker-compose -f docker/docker-compose-web-apps.yaml up -d
   - docker-compose -f docker/docker-compose-hlf-explorer.yaml up -d
   - docker-compose -f docker/docker-compose-nginx.yaml up -d
 
