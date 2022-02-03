@@ -11,12 +11,12 @@ apt-get update && \
     apt-get -y install docker-compose
 
 HLF_FOLDER=/opt/canarie/hyperledger-fabric
-BRANCH=${1:-develop}
+BRANCH=${1:-main}
 rm -fr $HLF_FOLDER
 
 mkdir -p $HLF_FOLDER
 
-WEBAPP_IMAGE_TAG=develop
+WEBAPP_IMAGE_TAG=$BRANCH
 
 echo "Cloning Git repository with branch: '$BRANCH'"
 git clone -b $BRANCH https://github.com/senofi/canarie-hyperledger-fabric.git $HLF_FOLDER && \
