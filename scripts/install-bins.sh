@@ -39,7 +39,7 @@ pullDockerImages() {
         dockerPull "${FABRIC_TAG}" "${FABRIC_IMAGES[@]}"
         echo "===> Pulling fabric ca Image"
         CA_IMAGE=(ca)
-        dockerPull "${CA_TAG}" "${CA_IMAGE[@]}"
+        dockerPull "${CA_VERSION}" "${CA_IMAGE[@]}"
         echo "===> List out hyperledger docker images"
         docker images | grep hyperledger
     else
